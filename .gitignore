@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# Virtual environment (rebuilt from requirements.txt — never ship it)
+.venv/
+venv/
+env/
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+
+# Local duplicates / assignment material not part of the solution
+DATA/
+description/
+report_assets/
+*.zip
+
+# Course datasets — contain personal data (PII); never publish
+data/
+*.csv
