@@ -56,6 +56,12 @@ def apply_kmeans(X_scaled, n_clusters: int = 4, random_state: int = 42):
     return labels, pca_df, km
 
 
+def project_pca(X_scaled, n_components: int = 2, random_state: int = 42) -> pd.DataFrame:
+    """Project the feature space to n_components for visualisation (2D or 3D)."""
+    comps = PCA(n_components=n_components, random_state=random_state).fit_transform(X_scaled)
+    return pd.DataFrame(comps, columns=[f"PCA{i + 1}" for i in range(n_components)])
+
+
 def generate_cluster_profiles(df: pd.DataFrame, cluster_col: str = "Cluster") -> pd.DataFrame:
     """Return mean of numeric features per cluster."""
     numeric_cols = df.select_dtypes(include="number").columns.tolist()
@@ -147,13 +153,13 @@ def suggest_campaigns(df: pd.DataFrame, cluster_id: int, cluster_col: str = "Clu
     ideas = []
 
     if s["family_large"]:
-        ideas.append("📦 **Family Bulk Deal** — 15% off when the basket exceeds €120")
+        ideas.append("**Family Bulk Deal** — 15% off when the basket exceeds €120")
     if len(core) >= 2:
-        ideas.append(f"🔗 **{core[0]} + {core[1]} Bundle** — buy both together, "
+        ideas.append(f"**{core[0]} + {core[1]} Bundle** — buy both together, "
                      f"get 20% off the cheaper one")
-    ideas.append(f"⭐ **{core[0]} Loyalty Boost** — double loyalty points on all "
+    ideas.append(f"**{core[0]} Loyalty Boost** — double loyalty points on all "
                  f"{core[0].lower()} purchases this month")
     if s["promo_high"]:
-        ideas.append("🏷️ **Weekly Promo Drop** — exclusive extra discount on top categories "
+        ideas.append("**Weekly Promo Drop** — exclusive extra discount on top categories "
                      "every week (this segment buys heavily on promotion)")
     return ideas[:top_n]

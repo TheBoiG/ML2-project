@@ -12,6 +12,9 @@ pip install -r requirements.txt
 
 # 2. launch
 streamlit run app.py
+
+#just in case
+http://localhost:8501
 ```
 
 The app opens in the browser. It expects the two course datasets at
