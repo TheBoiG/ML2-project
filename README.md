@@ -6,22 +6,27 @@ campaigns. Delivered as a runnable app (the alternative to a PDF report).
 
 ## Run
 
+Requires **Python 3.12**. From the project root:
+
 ```bash
-# 1. install dependencies (Python 3.12)
+# 1. (recommended) create and activate an isolated environment
+python -m venv .venv
+source .venv/bin/activate          # Windows: .venv\Scripts\activate
+
+# 2. install the pinned dependencies
 pip install -r requirements.txt
 
-# 2. launch
+# 3. launch
 streamlit run app.py
-
-#just in case
-http://localhost:8501
 ```
 
-The app opens in the browser. It expects the two course datasets at
-`data/customer_info.csv` and `data/customer_basket.csv` (paths editable in the
-sidebar). **These CSVs are not committed to the repo** — they hold personal
-customer data (birthdates, home coordinates, loyalty numbers), so place the
-provided files into a local `data/` folder before launching.
+Streamlit opens the app in your browser automatically (usually at
+<http://localhost:8501>; if it doesn't open, paste that URL manually).
+
+**The datasets are included** — `data/customer_info.csv` and
+`data/customer_basket.csv` ship with the repo, so the app runs straight after
+cloning, no extra files needed. The app loads them automatically; you can also
+point it at other CSVs from the sidebar.
 
 ## What it does
 
